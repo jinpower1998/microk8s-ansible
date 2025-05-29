@@ -51,9 +51,11 @@ or
 ansible-playbook -i ansible/example-hosts.ini ansible/site.yaml -e channel_version=["VERSION"] --private-key=[YOUR-SSH-KEY] --become --user=[USERNAME]  --ask-become-pass
 ```
 
+
 The kubeconfig-file will be written directly under your `./kube` directory.
 
-The Plugins dns, dashboard, cert-manager, ingress, and hostpath-storage will be nabled by default.
+The [addons](https://microk8s.io/docs/addons) dns, dashboard, cert-manager, ingress, and hostpath-storage will be nabled by default.
+
 
 #### Single-Node
 
