@@ -22,7 +22,7 @@
 
 - name: enable plugins
   ansible.builtin.shell:
-    cmd: microk8s enable dns dashboard cert-manager ingress hostpath-storage
+    cmd: microk8s enable dns ingress hostpath-storage
   run_once: true
 
 - name: get kubeconfig

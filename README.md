@@ -54,7 +54,7 @@ ansible-playbook -i ansible/example-hosts.ini ansible/site.yaml -e channel_versi
 
 The kubeconfig-file will be written directly under your `./kube` directory.
 
-The [addons](https://microk8s.io/docs/addons) dns, dashboard, cert-manager, ingress, and hostpath-storage will be nabled by default.
+The [addons](https://microk8s.io/docs/addons) dns, ingress, and hostpath-storage will be enabled by default.
 
 
 #### Single-Node
