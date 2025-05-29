@@ -39,7 +39,7 @@ Also specify the [channel-version](https://microk8s.io/docs/setting-snap-channel
  ansible-playbook -i ansible/[YOUR-HOSTS-FILE] ansible/site.yaml -e channel_version=["VERSION"] --private-key=[YOUR-SSH-KEY] --user=[USERNAME]
 ```
 
-With previlige escalation (depending how you're coennecting to your hosts):
+With previlige escalation (depending on how you're connecting to your hosts):
 
 ```
 ansible-playbook -i ansible/[YOUR-HOSTS-FILE] ansible/site.yaml -e channel_version=["VERSION"] --private-key=[YOUR-SSH-KEY] --become --user=[USERNAME] --ask-pass
