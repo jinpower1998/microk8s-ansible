@@ -53,6 +53,7 @@ ansible-playbook -i ansible/example-hosts.ini ansible/site.yaml -e channel_versi
 
 The kubeconfig-file will be written directly under your `./kube` directory.
 
+The Plugins dns, dashboard, cert-manager, ingress, and hostpath-storage will be nabled by default.
 
 #### Single-Node
 
@@ -67,6 +68,14 @@ Locally:
 ```
 ansible-playbook  --connection=local --inventory 127.0.0.1, -e channel_version=["VERSION"]  ansible/site.yaml --ask-become-pass       
 ``` 
+
+#### Uninstall
+
+To remove the cluster, just run:
+
+```
+ ansible-playbook -i ansible/[YOUR-HOSTS-FILE] ansible/reset.yaml --private-key=[YOUR-SSH-KEY] --user=[USERNAME]
+```
 
 ### NOTE:
 

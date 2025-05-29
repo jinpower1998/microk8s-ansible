@@ -9,6 +9,20 @@
   ansible.builtin.shell:
     cmd: sudo ufw allow in on cni0 && sudo ufw allow out on cni0 && sudo ufw default allow routed
 
+- name: Add the user to group microk8s
+  ansible.builtin.user:
+    name: "{{ ansible_ssh_user }}"
+    group: microk8s
+
+- set_fact:
+    homedir: "{{ lookup('env','HOME') }}"
+
+- name: create ~/.kube directory
+  ansible.builtin.file:
+    path: "{{ homedir }}/.kube"
+    state: directory
+    recurse: yes
+    owner: "{{ ansible_ssh_user }}"
 
 - name: show status
   ansible.builtin.shell:
