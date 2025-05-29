@@ -6,7 +6,7 @@
 
 This simple Ansible-Playbook creates a [microk8s](https://microk8s.io/)-Cluster with custom amount of nodes. 
 
-You can run this playbook anywhere you want: locally, on-premise (for exampple Proxmox or vCenter) or on cloud instances (AWS, Azure or GCP).
+You can run this playbook anywhere you want: locally, on-premise (for example Proxmox or vCenter) or on cloud instances (AWS, Azure or GCP).
 
 ## Prerequisites:
 
