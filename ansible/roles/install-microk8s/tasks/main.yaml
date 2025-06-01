@@ -3,11 +3,23 @@
     name:
       - microk8s
     classic: true
-    channel: "1.32"
+    channel: "{{ channel_version }}"
 
-- name: enable fw-rules for cni-networking
+- name: enable ufw-rules for cni-networking
   ansible.builtin.shell:
-    cmd: ufw allow in on cni0 && ufw allow out on cni0; ufw default allow routed
+    cmd: sudo ufw allow in on cni0 && sudo ufw allow out on cni0 && sudo ufw default allow routed
+
+- name: Add the user to group microk8s
+  ansible.builtin.user:
+    name: "{{ ansible_ssh_user }}"
+    group: microk8s
+
+- name: create ~/.kube directory
+  ansible.builtin.file:
+    path: "{{ lookup('env','HOME') }}/.kube"
+    state: directory
+    recurse: yes
+    owner: "{{ ansible_ssh_user }}"
 
 - name: show status
   ansible.builtin.shell:
@@ -15,6 +27,3 @@
   register: out
 
 - debug: var=out.stdout_lines
-
-
-# cmd: ufw allow in on cni0 && ufw allow out on cni0; ufw default allow routed
