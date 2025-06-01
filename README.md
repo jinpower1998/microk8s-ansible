@@ -19,9 +19,9 @@ For the underlying OS of the nodes, I recommend Ubuntu or Debian- based operatin
 
 ### Note on cloud instances:
 
-Please make sure that your VPC's allow to the following [ports](https://microk8s.io/docs/services-and-ports) on the nodes to access the microk8s-services (i.E. your SecurityGroups etc.). 
+Please make sure that your VPC's allow the following [ports](https://microk8s.io/docs/services-and-ports) on the nodes to access the microk8s-services (i.E. your SecurityGroups etc.). 
 
-You may need to provision and configure an additional loadbalancer for making the kube-api reachable from your local machine.
+You also may need to provision and configure an additional loadbalancer for making the kube-api reachable from your local machine.
 ##  Fill in your inventory file
 
 Your Kubernetes-Nodes/Hosts should be grouped into masters and workers.
