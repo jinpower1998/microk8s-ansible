@@ -3,6 +3,9 @@
     cmd: microk8s add-node --token-ttl 3600 --format short | tail -1
   run_once: true
   register: join_cmd
+  when:
+    - inventory_hostname in groups.masters
+    - inventory_hostname == play_hosts[0]
 
 - set_fact:
     join_cmd: "{{ join_cmd.stdout }}"
@@ -27,7 +30,7 @@
 
 - name: get kubeconfig
   ansible.builtin.shell:
-    cmd: microk8s config
+    cmd: microk8s config > microk8s-config
   register: kubeconfig
   run_once: true
 
@@ -37,13 +40,11 @@
 - debug: var=kubeconfig
   run_once: true
 
-- set_fact:
-    homedir: "{{ lookup('env','HOME') }}"
-
-- name: copy kubeconfig to localhost
-  ansible.builtin.lineinfile:
-    create: yes
-    line: "{{ kubeconfig }}"
-    path: "{{ homedir }}/.kube/microk8s-config"
-  delegate_to: localhost
+- name: save kubeconfig to localhost i.E control node
+  ansible.builtin.fetch:
+    src: microk8s-config
+    dest: "{{ lookup('env','HOME') }}/.kube/"
   run_once: true
+  when:
+    - inventory_hostname in groups.masters
+    - inventory_hostname == play_hosts[0]

@@ -21,6 +21,7 @@ For the underlying OS of the nodes, I recommend Ubuntu or Debian- based operatin
 
 Please make sure that your VPC's allow to the following [ports](https://microk8s.io/docs/services-and-ports) on the nodes to access the microk8s-services (i.E. your SecurityGroups etc.). 
 
+You may need to provision and configure an additional loadbalancer for making the kube-api reachable from your local machine.
 ##  Fill in your inventory file
 
 Your Kubernetes-Nodes/Hosts should be grouped into masters and workers.
@@ -52,7 +53,7 @@ ansible-playbook -i ansible/example-hosts.ini ansible/site.yaml -e channel_versi
 ```
 
 
-The kubeconfig-file will be written directly under your `./kube` directory.
+The kubeconfig-file will be written locally under `./kube/microk8s-config`.
 
 The [addons](https://microk8s.io/docs/addons) dns, ingress, and hostpath-storage will be enabled by default.
 

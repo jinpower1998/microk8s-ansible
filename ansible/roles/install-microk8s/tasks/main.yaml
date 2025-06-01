@@ -14,12 +14,9 @@
     name: "{{ ansible_ssh_user }}"
     group: microk8s
 
-- set_fact:
-    homedir: "{{ lookup('env','HOME') }}"
-
 - name: create ~/.kube directory
   ansible.builtin.file:
-    path: "{{ homedir }}/.kube"
+    path: "{{ lookup('env','HOME') }}/.kube"
     state: directory
     recurse: yes
     owner: "{{ ansible_ssh_user }}"

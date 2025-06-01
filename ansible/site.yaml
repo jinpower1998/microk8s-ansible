@@ -1,6 +1,7 @@
 - name: Install Microk8s
-  hosts: masters, workers
+  hosts: all
   become: true
+  gather_facts: no
   roles:
     - install-microk8s
     - configure
